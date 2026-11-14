@@ -423,7 +423,7 @@ pnpm build        # Production build
 | `rpaforge-core` | Engine, debugger, JSON-RPC bridge | v0.7.0 | ✅ Stable |
 | `rpaforge-libraries` | 19 RPA library modules | v0.7.0 | ✅ Stable |
 | `rpaforge-studio` | Electron + React desktop UI | v0.7.0 | 🔄 Alpha |
-| `rpaforge-orchestrator` | Control Tower | — | 🔜 Planned |
+| Control Tower | Studio dialog on the `rpaforge-runner serve`/daemon API | — | ✅ In Studio |
 
 ---
 
@@ -459,21 +459,30 @@ pnpm build        # Production build
 - ✅ **Supply Chain & CI**: SBOMs + sigstore attestations, coverage gate, Python 3.14 matrix, nightly benchmark suite with a 20% regression gate, i18n lint enforcement
 - ✅ **LLM Streaming**: progressive SSE output in the AI panel with non-streaming-identical token accounting
 
-### v0.8.0 — Enterprise Observability, Security Policies & Next-Gen Studio *(Q2 2027)*
-- [ ] **OpenTelemetry (OTel)**: Distributed tracing and metrics exported to Jaeger, Prometheus, Datadog
-- [ ] **Robot Sandbox & Security Policies**: Permission boundaries for filesystem, network egress, and system calls
-- [ ] **Automated Workflow Testing (`rpaforge-test`)**: Unit testing with activity mocking, assertions, and coverage
-- [ ] **Official CI/CD Actions**: GitHub Actions and GitLab CI templates for automated linting and execution
-- [ ] **Unified Hybrid Smart Recorder**: Cross-application recording across Web, Win32, WPF, and terminal
-- [ ] **Live Execution Rewind & Hot-Reload**: Checkpoint rewinding and edit-and-continue debugging
-- [ ] **Visual Workflow Diffing & Merge Tool**: Graphical side-by-side branch comparison and merge conflicts resolver
-- [ ] **Custom Activity Builder**: Package sub-diagrams into reusable drag-and-drop activities
+### v0.8.0 — Enterprise Observability, Security Policies & Next-Gen Studio *(milestone complete on `main`, unreleased)*
+- ✅ **OpenTelemetry (OTel)**: Distributed tracing and metrics (spans over run/task/activity, queue-depth gauge)
+- ✅ **Robot Sandbox & Security Policies**: Permission policies for filesystem, network egress, process spawn and environment keys (`--policy` / `RPAFORGE_POLICY`)
+- ✅ **Automated Workflow Testing (`rpaforge-test`)**: `*.test.json` specs with activity mocking, assertions and JUnit output
+- ✅ **Official CI/CD Actions**: Reusable GitHub Action and GitLab CI template
+- ✅ **Hybrid Recorder**: Session pause/resume and smart-selector fallback chains
+- ✅ **Live Execution Rewind & Hot-Reload**: Checkpoint-based rewind and edit-and-continue debugging
+- ✅ **Visual Workflow Diff & Merge**: Semantic diff of `.process` revisions with side-by-side viewer and 3-way merge
+- ✅ **Custom Activity Builder**: Package sub-diagrams into reusable drag-and-drop activities
+- ✅ **MCP Client & Server**: External MCP servers as libraries; `rpaforge-runner mcp` exposes processes as agent tools
+- ✅ **Python 3.14 Support**: CI matrix and classifiers
+- ✅ **Authenticode Signing**: Signed Windows installer
 
-### v0.9.0 — Control Tower / Orchestrator Platform *(Beta - Q4 2027)*
-- [ ] **Centralized Control Tower Backend**: FastAPI + PostgreSQL + Redis with REST/WebSocket APIs
-- [ ] **Fleet Management & Agent Pairing**: Instant mTLS registration, live heartbeats, and remote deployment
-- [ ] **Centralized Scheduling & Event Triggers**: Timezone-aware cron schedules, webhooks, and email triggers
-- [ ] **Orchestrator Web Dashboard**: Real-time fleet monitoring, execution streaming, and queue metrics
+### v0.9.0 — Control Tower / Orchestrator Platform *(milestone complete on `main`, unreleased)*
+- ✅ **Lightweight Control Tower**: Studio dialog (runs, queues, schedules, logs) on the existing `rpaforge-runner serve`/daemon API — no separate backend
+- ✅ **Parallel Blocks**: End-to-end parallel execution
+- ✅ **Scripting & Email Libraries**: New built-in libraries
+- ✅ **SSRF Parity for HTTP**: The SSRF guard now covers the HTTP library, re-checked on every redirect hop
+- ✅ **Cancellation Hardening**: Cooperative cancellation with a `Cancelled` queue status
+- ✅ **Studio Depth**: Canvas organization, debugger improvements and execution analytics
+- ✅ **Data Pills**: Output/variable pills in the designer and expression editor
+- ✅ **Recorder Editing**: Edit recorded actions (list, dedup, convert) before generating the diagram
+
+**Next up:** v0.10.0 planning ([#889](https://github.com/chelslava/rpaforge/issues/889)) and multi-machine Control Tower via Postgres parity for the runs API ([#887](https://github.com/chelslava/rpaforge/issues/887)). The v0.8.0/v0.9.0 milestone scope is complete on `main` and awaits release.
 
 ### v1.0.0 — Production Ready & Enterprise LTS *(Q4 2027)*
 - [ ] **High Availability (HA) Clustering**: Multi-node orchestrator with automatic failover

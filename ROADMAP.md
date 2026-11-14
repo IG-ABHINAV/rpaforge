@@ -4,7 +4,7 @@
 
 **RPAForge** is an open-source, developer-first Robotic Process Automation (RPA) Studio and execution platform. Combining visual low-code workflow design with native Python power, modern developer ergonomics, and cutting-edge Agentic AI capabilities, RPAForge bridges the gap between brittle legacy enterprise RPA suites and modern software engineering practices.
 
-- **Current Version**: v0.5.0 (Active Development & Stabilization)
+- **Current Version**: v0.7.0 (Active Development — v0.8.0 next)
 - **Target for v1.0.0 GA**: Q4 2027
 - **License**: Apache-2.0
 
@@ -57,7 +57,7 @@ gantt
 
 ## Detailed Milestone Breakdown
 
-### ✅ v0.4.x — AI Generation, XYFlow 12 & Plugin Architecture *(Current)*
+### ✅ v0.4.x — AI Generation, XYFlow 12 & Plugin Architecture *(released)*
 
 - [x] **XYFlow 12 Migration**: Upgraded canvas engine with sub-diagram navigation, ELK automatic layout, and connection handles.
 - [x] **AI-Powered Workflow Generation**: Prompt-to-diagram generation supporting OpenAI, Anthropic, Google Gemini, Ollama, and Groq with AST schema validation and self-correction.

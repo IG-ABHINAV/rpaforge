@@ -11,9 +11,9 @@ Essential information for AI coding agents working on RPAForge.
 
 RPAForge is an Open Source RPA Studio. It provides a visual process designer, recorder, debugger, and orchestrator for RPA automation.
 
-**Current Version**: v0.5.0
+**Current Version**: v0.7.0
 
-**Status**: Active Development - v0.6.0 Planned
+**Status**: Active Development — v0.8.0 next (milestone scope complete on `main`, unreleased)
 
 ## Knowledge Base — Central KB (read first, write after)
 
@@ -55,6 +55,16 @@ pytest packages/core/tests -v          # Python tests
 cd packages/studio && pnpm test        # UI tests
 ```
 
+### Lint & Typecheck
+
+```bash
+ruff check packages/ && ruff format --check packages/   # Python lint + format check
+cd packages/studio && pnpm lint        # oxlint (replaces ESLint)
+cd packages/studio && pnpm typecheck   # native TypeScript 7 compiler, no emit
+```
+
+Studio uses pnpm v11, oxlint, and the native TypeScript 7 compiler.
+
 ## Security (v0.3.1)
 
 Critical security vulnerabilities have been addressed:
@@ -89,6 +99,9 @@ rpaforge/
 │   │   │   ├── runner/          # Headless runner, daemon, serve
 │   │   │   ├── testing/         # Diagram test framework (rpaforge-test)
 │   │   │   ├── observability/   # OpenTelemetry integration
+│   │   │   ├── llm/             # LLM clients, agentic loop
+│   │   │   ├── mcp/             # MCP client + server
+│   │   │   ├── queues/          # Transaction work queues
 │   │   │   └── utils/           # Utilities
 │   │   └── tests/
 │   │
@@ -101,14 +114,21 @@ rpaforge/
 │   │       ├── Database/        # Database operations
 │   │       └── Credentials/     # Secure credentials
 │   │
+│   ├── activities/              # Shared activity definitions
+│   ├── codegen/                 # Code generation
+│   ├── diagram-core/            # Diagram model
+│   ├── domain-model/            # Domain model
+│   ├── validation/              # Validation
+│   │
 │   ├── studio/                  # Electron + React UI
 │   │   ├── electron/            # Electron main process
 │   │   └── src/
-│   │       ├── components/      # Designer, Debugger, Recorder, Common
+│   │       ├── components/      # Designer, Debugger, Recorder, Control Tower, Common
 │   │       ├── stores/          # Zustand state
 │   │       └── hooks/           # Custom hooks
 │   │
-│   └── orchestrator/            # Control Tower (future)
+│   └── (no packages/orchestrator — Control Tower is a Studio dialog
+│       on the `rpaforge-runner serve`/daemon API)
 └── docs/
 ```
 
@@ -162,7 +182,8 @@ for the full guide and a runnable example (`examples/sdk-hello-library`).
 - **Components**: Functional components with hooks
 - **State**: Zustand for global state management
 - **Styling**: TailwindCSS
-- **Formatting**: ESLint + Prettier
+- **Formatting**: oxlint, type-aware (replaces ESLint)
+- **Typecheck**: native TypeScript 7 compiler (`pnpm typecheck` in `packages/studio`)
 - **TypeScript**: Strict mode enabled, no unused locals/parameters
 - **Path aliases**: Use `@/*` for `src/*` imports
 
